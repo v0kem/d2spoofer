@@ -1,0 +1,50 @@
+{
+  "dry_run": true,
+  "log_file": "cleanup_log.txt",
+  "confirmation": {
+    "mode": "countdown",
+    "countdown_seconds": 15
+  },
+  "registry": {
+    "enabled": true,
+    "targets": [
+      { "hive": "HKCR", "start_path": "" },
+      { "hive": "HKCU", "start_path": "" },
+      { "hive": "HKLM", "start_path": "" },
+      { "hive": "HKU", "start_path": "" },
+      { "hive": "HKCC", "start_path": "" }
+    ],
+    "allow_full_hive_scan": true,
+    "search_terms": ["dota", "steam", "valve"],
+    "exclude_terms": ["msteams"],
+    "exclude_path_suffixes": [],
+    "match_type": "partial",
+    "recursive": true,
+    "delete_matching_keys": true,
+    "delete_matching_values": true,
+    "backup_before_delete": true,
+    "backup_dir": "registry_backups"
+  },
+  "folder": {
+    "enabled": true,
+    "path": "C:\\Program Files (x86)\\Steam",
+    "keep_folder": "steamapps",
+    "keep_file": "steam.exe"
+  },
+  "steam_processes": {
+    "enabled": true,
+    "stop_before_cleanup": true,
+    "restart_after_cleanup": true,
+    "executable": "",
+    "process_names": [
+      "steam.exe",
+      "steamwebhelper.exe",
+      "steamerrorreporter.exe",
+      "steamerrorreporter64.exe",
+      "gameoverlayui.exe",
+      "gameoverlayui64.exe"
+    ],
+    "graceful_timeout_seconds": 10,
+    "force_kill_after_timeout": true
+  }
+}
