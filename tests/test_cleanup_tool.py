@@ -37,8 +37,14 @@ class ConfigurationTests(unittest.TestCase):
                 encoding="utf-8",
             )
             config = tool.load_config_file(path)
-            self.assertEqual(Path(config["log_file"]), root / "logs" / "run.log")
-            self.assertEqual(Path(config["registry"]["backup_dir"]), root / "backups")
+            self.assertEqual(
+                Path(config["log_file"]).resolve(),
+                (root / "logs" / "run.log").resolve(),
+            )
+            self.assertEqual(
+                Path(config["registry"]["backup_dir"]).resolve(),
+                (root / "backups").resolve(),
+            )
             self.assertEqual(config["registry"]["targets"][0]["hive"], "HKCR")
 
     def test_unknown_config_key_is_rejected(self):
