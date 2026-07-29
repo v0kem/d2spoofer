@@ -17,13 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-          cache: pip
 
       - name: Install build dependency
-        run: python -m pip install -r requirements-build.txt
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "pyinstaller>=6.0,<7"
 
       - name: Compile-check source
         run: python -m py_compile cleanup_tool.py
